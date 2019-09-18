@@ -1,0 +1,20 @@
+{
+  "extends": [],
+  "parser": "babel-eslint",
+  "plugins": [],
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": true
+  },
+  "rules": {
+    "linebreak-style": "off",
+    "no-console": "off",
+    "no-throw-literal": "off",
+    "max-len": "off",
+    "prefer-arrow-callback": 1,
+    "func-names": "off",
+    "indent": "off",
+    "no-unused-vars": "warn",
+  }
+}

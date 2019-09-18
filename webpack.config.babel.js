@@ -1,20 +1,18 @@
 const path = require("path");
-const nodeExternals = require("webpack-node-externals");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: "development",
   entry: "./src/js/index.js",
   output: {
     filename: "app.bundle.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/"
   },
   node: {
     __dirname: false,
     __filename: false
   },
-  externals: [
-    nodeExternals()
-  ],
   module: {
     rules: [
       {
@@ -22,16 +20,30 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: "babel-loader",
         options: {
-          presets: ["@babel/preset-env"],
-          plugins: ["@babel/plugin-transform-runtime", "@babel/plugin-syntax-dynamic-import"]
+          presets: [
+            "@babel/preset-env",
+            "@babel/preset-react"
+          ],
+          plugins: [
+            "@babel/plugin-transform-runtime",
+            "@babel/plugin-syntax-dynamic-import",
+            "@babel/plugin-proposal-class-properties"
+          ]
         }
       }
     ]
   },
   plugins: [
-    
+    new HtmlWebpackPlugin({
+      template: path.resolve( __dirname, 'src/index.html' ),
+      filename: 'index.html'
+   })
   ],
   stats: {
     colors: true
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    historyApiFallback: true
   }
 };
