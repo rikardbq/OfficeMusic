@@ -9,10 +9,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/"
   },
-  node: {
-    __dirname: false,
-    __filename: false
-  },
   module: {
     rules: [
       {
@@ -44,6 +40,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
-    historyApiFallback: true
+    historyApiFallback: true,
+    port: 3000
   }
 };
